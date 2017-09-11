@@ -10,7 +10,6 @@ fun main(args: Array<String>) {
 
     var jPerson2 = JPerson("Juan", "Garcia", 20)
 
-
     // Kotlin class
     var person = Person() // using empty constructor
     person.age = 20
@@ -26,4 +25,20 @@ fun main(args: Array<String>) {
     println("Person #2 First Name: $firstName")
     println("Person #3 Full Name: ${person3.firstName} ${person3.lastName}")
 
+    var person4 = Person()
+    person4.age = 20
+
+    if (person == person4) {
+        println("Person #1 and Person #4 are equals")
+    }
+
+    person2 = person
+
+    if (person === person2) {
+        println("Person #1 and Person #2 are the same instance")
+    }
+
+    if (person !== person4) {
+        println("Person #1 and Person #4 are NOT the same instance")
+    }
 }
