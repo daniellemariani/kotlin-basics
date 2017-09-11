@@ -41,4 +41,25 @@ fun main(args: Array<String>) {
     if (person !== person4) {
         println("Person #1 and Person #4 are NOT the same instance")
     }
+
+    // null safety
+    var text: String = "demo"
+    // text = null Compilation Error
+
+    var text2: String? = "demo"
+    var text2Length = text2?.length // Null Safe call
+
+    text2 = null
+
+    try {
+        text2Length = text2!!.length // It will throw NPE if text2 is null
+    } catch (e : Exception) {
+        println("text2 is null")
+    }
+
+    // elvis operator
+    text2Length = if (text2 != null) text2.length else 0
+    text2Length = text2?.length ?: 0
+
+    println("text2 length ${text2Length}")
 }
