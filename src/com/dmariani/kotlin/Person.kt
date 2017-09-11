@@ -3,24 +3,10 @@ package com.dmariani.kotlin
 /**
  * @author danielle.mariani
  */
-class Person() {
-
-    // properties
-    var firstName: String? = null
-    var lastName: String? = null
-    var age: Int? = null
-
-    init {
-        firstName = DEFAULT_FIRST_NAME
-        lastName = DEFAULT_LAST_NAME
-        age = DEFAULT_AGE
-    }
-
-    constructor(firstName: String, lastName: String, age: Int) : this() {
-        this.firstName = firstName
-        this.lastName = lastName
-        this.age = age
-    }
+data class Person(
+        var firstName: String? = DEFAULT_FIRST_NAME,
+        var lastName: String? = DEFAULT_LAST_NAME,
+        var age: Int? = DEFAULT_AGE) {
 
     companion object {
 

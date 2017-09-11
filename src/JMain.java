@@ -19,5 +19,7 @@ public class JMain {
         person.setAge(20);
 
         Person person2 = new Person("Juan", "Garcia", 20);
+
+        // Person person3 = new Person("Luis"); Compilation error
     }
 }
