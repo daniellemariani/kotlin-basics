@@ -1,5 +1,6 @@
 import com.dmariani.kotlin.JPerson
 import com.dmariani.kotlin.Person
+import com.dmariani.kotlin.timestamp
 
 fun main(args: Array<String>) {
     println("Hello World!")
@@ -70,4 +71,7 @@ fun main(args: Array<String>) {
     println("Person #1 Full Name: ${person.fullName()} chars: ${person.fullNameLength()}")
     println("Person #1 Future Age within 5 years: ${person.futureAge(5)}")
     println("Person #1 Future Age within 5 years: ${person.futureAge()}")
+
+    // Extension functions
+    println("Now: ${String.timestamp()}")
 }

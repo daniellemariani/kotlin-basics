@@ -11,6 +11,7 @@ data class Person(
     fun foo() {
         // do something
         println("Person foo")
+        println("Method called: ${String.timestamp()}")
     }
 
     fun bar() : String? {
