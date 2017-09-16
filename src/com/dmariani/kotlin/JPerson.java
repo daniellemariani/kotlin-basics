@@ -54,4 +54,11 @@ public class JPerson {
     public void setAge(int age) {
         this.age = age;
     }
+
+    // other methods
+
+    public void foo() {
+        System.out.println("JPerson foo");
+    }
+
 }

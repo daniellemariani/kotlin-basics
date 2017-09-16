@@ -61,5 +61,13 @@ fun main(args: Array<String>) {
     text2Length = if (text2 != null) text2.length else 0
     text2Length = text2?.length ?: 0
 
-    println("text2 length ${text2Length}")
+    println("text2 length $text2Length")
+
+
+    // functions
+    person.foo()
+    person.bar()
+    println("Person #1 Full Name: ${person.fullName()} chars: ${person.fullNameLength()}")
+    println("Person #1 Future Age within 5 years: ${person.futureAge(5)}")
+    println("Person #1 Future Age within 5 years: ${person.futureAge()}")
 }
