@@ -16,7 +16,7 @@ Lesson #3: Data Class
 Lesson #4: Null Safety
 ----------------------
 
-Lesson #5: Function and Extension Functions
+Lesson #5: Function, Extension Functions and Extension Properties
 ----------------------
 
 
