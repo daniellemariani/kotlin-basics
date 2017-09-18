@@ -20,7 +20,7 @@ data class Person(
         return null
     }
 
-    fun fullName() : String = firstName.toUpperCase() + " " + lastName.toUpperCase()
+    fun fullName() : String = firstName.toUpperCase() + String.WHITESPACE_CHAR + lastName.toUpperCase()
 
     fun fullNameLength() : Int = (firstName + lastName).length
 

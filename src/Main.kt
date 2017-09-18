@@ -1,5 +1,6 @@
 import com.dmariani.kotlin.JPerson
 import com.dmariani.kotlin.Person
+import com.dmariani.kotlin.middleLength
 import com.dmariani.kotlin.timestamp
 
 fun main(args: Array<String>) {
@@ -74,4 +75,7 @@ fun main(args: Array<String>) {
 
     // Extension functions
     println("Now: ${String.timestamp()}")
+
+    // Extension property
+    println("Person #1: Length ${person.fullName().length} Middle Length: ${person.fullName().middleLength}")
 }
