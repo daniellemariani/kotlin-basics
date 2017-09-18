@@ -1,7 +1,5 @@
-import com.dmariani.kotlin.JPerson
-import com.dmariani.kotlin.Person
-import com.dmariani.kotlin.middleLength
-import com.dmariani.kotlin.timestamp
+import com.dmariani.kotlin.*
+import com.dmariani.kotlin.MusicalInstrument.*
 
 fun main(args: Array<String>) {
     println("Hello World!")
@@ -78,4 +76,29 @@ fun main(args: Array<String>) {
 
     // Extension property
     println("Person #1: Length ${person.fullName().length} Middle Length: ${person.fullName().middleLength}")
+
+    // Inheritance example
+    val guitar = Guitar()
+    val drums = Drums()
+    val piano = GenericInstrument("Piano", Type.STRING, object : PlayInstrument {
+
+        override fun startPlaying(): String = "Start playing the Piano"
+
+        override fun stopPlaying(): String = "Stop playing the Piano"
+
+    })
+
+    println("Musical Instrument #1: ${guitar.name}")
+    println("Musical Instrument #2: ${drums.name}")
+    println("Musical Instrument #3: ${piano.name}")
+
+    play(guitar, drums, piano)
+}
+
+fun play(vararg instruments: MusicalInstrument) {
+    for (instrument in instruments) {
+        println(instrument.startPlaying())
+        println(instrument.stopPlaying())
+    }
+
 }

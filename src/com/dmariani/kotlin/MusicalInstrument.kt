@@ -3,10 +3,10 @@ package com.dmariani.kotlin
 /**
  * @author danielle.mariani
  */
-open class MusicalInstrument(val name: String, val type: Type) {
+abstract class MusicalInstrument(val name: String, val type: Type) : PlayInstrument {
 
     enum class Type {
-        STRINGS, WIND, PERCUSSION
+        STRING, WIND, PERCUSSION
     }
 
 }
