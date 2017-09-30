@@ -5,9 +5,9 @@ package com.dmariani.kotlin
  */
 class GenericInstrument (genericName: String,
                          genericType: MusicalInstrument.Type,
-                         val genericPlay : PlayInstrument?) : MusicalInstrument(genericName, genericType) {
+                         private val genericPlay : PlayInstrument? = null) : MusicalInstrument(genericName, genericType) {
 
-    override fun startPlaying(): String = genericPlay?.startPlaying() ?: "Start playing Generic instrument"
+    override fun startPlaying(): String = genericPlay?.startPlaying() ?: super.startPlaying()
 
-    override fun stopPlaying(): String = genericPlay?.stopPlaying() ?: "Stop playing Generic instrument"
+    override fun stopPlaying(): String = genericPlay?.stopPlaying() ?: super.stopPlaying()
 }

@@ -9,4 +9,8 @@ abstract class MusicalInstrument(val name: String, val type: Type) : PlayInstrum
         STRING, WIND, PERCUSSION
     }
 
+    override fun startPlaying(): String = "Start playing Generic instrument"
+
+    override fun stopPlaying(): String = "Stop playing Generic instrument"
+
 }
