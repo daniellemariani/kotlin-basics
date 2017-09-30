@@ -88,14 +88,15 @@ fun main(args: Array<String>) {
 
     })
 
+    val derivedInstrument = DerivedInstrument(piano)
+
     println("Musical Instrument #1: ${guitar.name}")
     println("Musical Instrument #2: ${drums.name}")
     println("Musical Instrument #3: ${piano.name}")
-
-    play(guitar, drums, piano)
+    play(guitar, drums, piano, derivedInstrument)
 }
 
-fun play(vararg instruments: MusicalInstrument) {
+fun play(vararg instruments: PlayInstrument) {
     for (instrument in instruments) {
         println(instrument.startPlaying())
         println(instrument.stopPlaying())
