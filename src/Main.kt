@@ -94,6 +94,9 @@ fun main(args: Array<String>) {
     println("Musical Instrument #2: ${drums.name}")
     println("Musical Instrument #3: ${piano.name}")
     play(guitar, drums, piano, derivedInstrument)
+
+    val jSingleton = JSingleton.getInstance()
+    jSingleton.print()
 }
 
 fun play(vararg instruments: PlayInstrument) {
