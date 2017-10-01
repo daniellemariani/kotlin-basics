@@ -97,6 +97,8 @@ fun main(args: Array<String>) {
 
     val jSingleton = JSingleton.getInstance()
     jSingleton.print()
+
+    Singleton.print()
 }
 
 fun play(vararg instruments: PlayInstrument) {
