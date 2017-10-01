@@ -33,3 +33,8 @@ Lesson #6: Inheritance
 ----------------------
 
 This lesson will show you how to manage the inheritance in Kotlin through Classes and Interfaces, as well as a new feature called Delegation.
+
+Lesson #7: Objects
+-----------------
+
+This lesson will show you the different ways to manage Objects: Companion Object, Object Expression and Object Declaration (Singleton).
