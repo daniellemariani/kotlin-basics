@@ -38,3 +38,8 @@ Lesson #7: Objects
 -----------------
 
 This lesson will show you the different ways to manage Objects: Companion Object, Object Expression and Object Declaration (Singleton).
+
+Lesson #8: Features
+-----------------
+
+This lesson will show you different features in Kotlin like If, When, Range Expressions, Loops, Maps, Collectons and Lambdas Expressions.
