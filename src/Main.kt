@@ -1,16 +1,28 @@
-import com.dmariani.kotlin.*
-import com.dmariani.kotlin.MusicalInstrument.*
+import com.dmariani.kotlin.music.*
+import com.dmariani.kotlin.person.JPerson
+import com.dmariani.kotlin.person.Person
+import com.dmariani.kotlin.singleton.JSingleton
+import com.dmariani.kotlin.singleton.Singleton
+import com.dmariani.kotlin.util.Features
+import com.dmariani.kotlin.util.format
+import com.dmariani.kotlin.util.timestamp
+import java.util.*
 
 fun main(args: Array<String>) {
+
     println("Hello World!")
+
+    /*
+     * Classes and instances
+     */
 
     // Java interoperability
     var jPerson = JPerson()
-    jPerson.age = 20 // java setter is implemented in a Kotlin way
+    jPerson.age = 20 // Java setter is implemented in a Kotlin way, do not need to call setAge()
 
     var jPerson2 = JPerson("Juan", "Garcia", 20)
 
-    // Kotlin class
+    // Kotlin class instance
     var person = Person() // using empty constructor
     person.age = 20
 
@@ -42,257 +54,119 @@ fun main(args: Array<String>) {
         println("Person #1 and Person #4 are NOT the same instance")
     }
 
-    // null safety
-    var text: String = "demo"
-    // text = null Compilation Error
+    /*
+     * Null Safety
+     */
 
-    var text2: String? = "demo"
-    var text2Length = text2?.length // Null Safe call
+    var text: String = "demo" // Create a Non Null variable
+    // text = null Compilation Error since text cannot be null
 
+    var text2: String? = "demo" // Create a Nullable variable
+    var length = text2?.length // Null Safe call using null safe operator '?'
+
+    // However, Kotlin allow you to manage NPE
     text2 = null
-
     try {
-        text2Length = text2!!.length // It will throw NPE if text2 is null
+        length = text2!!.length // It will throw NPE if text2 if null using non null asserted operator '!!'
     } catch (e : Exception) {
-        println("text2 is null")
+        println("Exception: text2 is null")
     }
 
-    // elvis operator
-    text2Length = if (text2 != null) text2.length else 0
-    text2Length = text2?.length ?: 0
+    // Ternary Operator
+    length = if (text2 != null) text2.length else -1
 
-    println("text2 length $text2Length")
+    // Elvis Operator
+    length = text2?.length ?: -1
+
+    println("text2 length $length")
 
 
-    // functions
+    /*
+     * Functions
+     */
+
     person.foo()
     person.bar()
-    println("Person #1 Full Name: ${person.fullName()} chars: ${person.fullNameLength()}")
-    println("Person #1 Future Age within 5 years: ${person.futureAge(5)}")
-    println("Person #1 Future Age within 5 years: ${person.futureAge()}")
+    println("Person #1 Full Name: ${person.fullName()}")
+    println("Person #1 Is Adult?: ${person.isAdult()}")
+    println("Person #1 Future Age within 5 years: ${person.futureAge(10)}")
 
-    // Extension functions
+    // Class Extension Function
     println("Now: ${String.timestamp()}")
 
-    // Extension property
-    println("Person #1: Length ${person.fullName().length} Middle Length: ${person.fullName().middleLength}")
+    // Instance Extension Function
+    val date = Date()
+    println("Now: ${date.format()}")
 
-    // Inheritance example
+    /*
+     * Inheritance
+     */
+
     val guitar = Guitar()
     val drums = Drums()
-    val piano = GenericInstrument("Piano", Type.STRING, object : PlayInstrument {
 
-        override fun startPlaying(): String = "Start playing the Piano"
+    // Delegation Example using object expressions
+    val derivedInstrument = DerivedInstrument(object : MusicalInstrument("Piano", Type.STRING) {
+        override fun startPlaying() {
+            println("Start playing the Piano")
+        }
 
-        override fun stopPlaying(): String = "Stop playing the Piano"
+        override fun stopPlaying() {
+            println("Stop playing the Piano")
+        }
 
     })
 
-    val derivedInstrument = DerivedInstrument(piano)
-
     println("Musical Instrument #1: ${guitar.name}")
     println("Musical Instrument #2: ${drums.name}")
-    println("Musical Instrument #3: ${piano.name}")
-    play(guitar, drums, piano, derivedInstrument)
+    println("Musical Instrument #3: ${derivedInstrument.instrument.name}")
+    play(guitar, drums, derivedInstrument)
 
-    // Object - Singleton
+    /*
+     * Singleton
+     */
+
+    // Java Singleton
     val jSingleton = JSingleton.getInstance()
     jSingleton.print()
 
+    // Kotlin Singleton
     Singleton.print()
 
-    // Nice Stuff
-    stringMultiline()
-    ifExpression(5, 10)
-    whenExpression(1)
-    whenExpression(-1)
-    whenExpression("Hello World")
-    whenExpression(guitar)
-    checkInstrument(drums)
-    rangeExpression(4)
-    traverseMap()
-    sortedList()
-    groupedList()
+    /*
+     * More Features
+     */
+
+    // String Feature
+    Features.stringMultiline()
+
+    // If Feature
+    Features.ifExpression(5, 10)
+
+    // When Feature
+    Features.whenExpression(1)
+    Features.whenExpression(-1)
+    Features.whenExpression("Hello World")
+    Features.whenExpression(guitar)
+    Features.whenExpression2(drums)
+
+    // Range Feature
+    Features.loops()
+
+    // Map Feature
+    Features.traverseMap()
+
+    // List Feature
+    Features.sortedList()
+    Features.groupedList()
 }
 
+/**
+ * Play and stop playing musical instruments
+ */
 fun play(vararg instruments: PlayInstrument) {
     for (instrument in instruments) {
         println(instrument.startPlaying())
         println(instrument.stopPlaying())
-    }
-}
-
-/**
- * Strings
- */
-
-fun stringMultiline() {
-    val text = """
-            |First Line
-            |Second Line
-            |Third Line
-            """.trimMargin()
-
-    println("$text")
-}
-
-/**
- * If Expression
- */
-
-fun ifExpression(a: Int, b: Int) {
-
-    // #1
-    var max = a
-    if (a < b) max = b
-
-    // #2
-    if (a > b) {
-        max = a
-    } else {
-        max = b
-    }
-
-    // #3
-    max = if (a > b) a else b
-}
-
-/**
- * When Expression #1
- */
-
-fun whenExpression(a: Any) {
-    when(a) {
-        is String -> println("I'm a String")
-        is PlayInstrument -> println("I'm an instrument")
-        is Int -> {
-            println("I'm an Int")
-            when(a) {
-                in 1..100 -> println("it's between 1 and 100")
-                0, -1 -> println("it's 0 or -1")
-            }
-        }
-        else -> println("Unsupported type")
-    }
-}
-
-/**
- * When Expression #2
- */
-
-fun checkInstrument(instrument: MusicalInstrument) {
-
-    val message = when(instrument.type) {
-        MusicalInstrument.Type.WIND -> "Wind wind"
-        MusicalInstrument.Type.STRING -> "String string"
-        MusicalInstrument.Type.PERCUSSION -> "Percussion percussion"
-    }
-
-    println("Check instrument type $message")
-
-}
-
-/**
- * Range Expression
- */
-
-fun rangeExpression(number: Int) {
-
-    // if (number >= 1 && number <= 10
-    if (number in 1..10) {
-        println("Number $number is in this range [1,10]")
-    }
-
-    println("Increase Example 1..5")
-    for (i in 1..5) {
-        println("Number $i")
-    }
-
-    println("Decrease Example 5..1")
-    for (i in 5..1) {
-        println("Number $i")
-    }
-
-    println("DownTo Example 5..1")
-    for (i in 5 downTo 1) {
-        println("Number $i")
-    }
-
-    println("Step example")
-    // step must not be equal to 1
-    for (i in 1..10 step 2) {
-        println("Number $i")
-    }
-
-    println("Step example 2")
-    // step must not be equal to 1
-    for (i in 10 downTo  1 step 2) {
-        println("Number $i")
-    }
-
-    println("Until Example 1..10")
-    // [1, 10)  --> 1..9
-    for (i in 1 until 10) {
-        println("Number $i")
-    }
-}
-
-/**
- * Maps
- */
-
-fun traverseMap() {
-    val map = hashMapOf<String, Person>()
-    map.put("P1", Person("Pepe", "M"))
-    map.put("P2", Person("Mary", "L"))
-    map.put("P3", Person("Luis", "M"))
-
-    println("Destructuring Expression")
-    for ((personId, person) in map) {
-        println("Person id $personId - data -> $person")
-    }
-
-    val map2 = mapOf("P1" to Person("Pepe", "M"),
-            "P2" to Person("Mary", "L"),
-            "P3" to Person("Luis", "M"))
-
-    println("ForEach with Lambda #1")
-    map2.forEach { key, value ->
-        println("Person id $key - data -> $value")
-    }
-
-    println("ForEach with Lambda #2")
-    map2.entries.forEach {
-        println("Person id ${it.key} - data -> ${it.value}")
-    }
-
-}
-
-/**
- * Collections
- */
-
-fun sortedList() {
-    val people = listOf(Person("Pepe", "M"),
-            Person("Mary", "L"),
-            Person("Luis", "M"))
-
-    println("ForEach sorted list")
-    val sorted = people.sortedBy { it.firstName }
-    sorted.forEach {
-        println("${it.firstName}")
-    }
-}
-
-fun groupedList() {
-    val people = listOf(Person("Pepe", "M"),
-            Person("Mary", "L"),
-            Person("Luis", "M"))
-
-    println("ForEach sorted list")
-    val groups = people.groupBy { it.lastName[0] }
-
-    groups.entries.forEach {
-        println("${it.key} - Data -> ${it.value}")
     }
 }

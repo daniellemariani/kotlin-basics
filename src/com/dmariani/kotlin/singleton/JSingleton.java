@@ -1,6 +1,8 @@
-package com.dmariani.kotlin;
+package com.dmariani.kotlin.singleton;
 
 /**
+ * This class represents a Singleton in Java
+ *
  * @author danielle.mariani
  */
 public class JSingleton {
@@ -19,6 +21,6 @@ public class JSingleton {
     }
 
     public void print() {
-        System.out.println("Hello World from Singleton");
+        System.out.println("Hello World from Java Singleton");
     }
 }

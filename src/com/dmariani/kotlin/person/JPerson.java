@@ -1,6 +1,8 @@
-package com.dmariani.kotlin;
+package com.dmariani.kotlin.person;
 
 /**
+ * This class represents a Person model class in Java
+ *
  * @author danielle.mariani
  */
 public class JPerson {
@@ -27,6 +29,12 @@ public class JPerson {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+
+        String text = "text";
+        for (int i = 0; i < text.length(); i++) {
+
+        }
+
     }
 
     // getters and setters
